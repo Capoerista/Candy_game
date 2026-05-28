@@ -1,0 +1,17 @@
+body {
+  background-color: rgb(255, 255, 255);
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);  
+  gap: 10px;                              
+  max-width: 500px;                       
+  margin-top: 20px;
+}
+
+#game-board button {
+  padding: 15px;                          
+  font-size: 18px;                       
+  cursor: pointer;                        
+}
