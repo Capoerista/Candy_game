@@ -7,8 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to Poison Candy!</h1>
+    <h1>Welcome to Poison Candy Game!</h1>
+    <p>Please select the game mode you want to play</p>
+    <div id="mode-container">
+        <button id="mode-bot">PLAY VS COMPUTER</button>
+        <button id="mode-friend">PLAY WITH FRIEND</button>
+    </div>
+    <div id="score-container">Coins: <span id="coins-count">0</span>🪙</div>
+    <button id="shop-btn">Shop</button>
     <div id="game-board"></div>
-    <script src="javascript.js"></script>
+    <div id="game-over-screen"><h1>Game Over</h1>
+     <button id="restart-btn">Play again</button>   
+    </div>
+    <div id="shop-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-shop">&times;</span>
+            <h2>Skin shop</h2>
+            <p>Choose your skin:</p>
+
+            <div class="shop-tems">
+            <button id="skin-candy" class="skin-btn" data-skin="🍬" data-price="0">Candies (For free)</button>
+            <button id="skin-fruit" class="skin-btn" data-skin="🍓" data-price="15">Fruits (15 🪙)</button>
+            <button id="skin-crystal" class="skin-btn" data-skin="💎" data-price="30">Daimons (30 🪙)</button>  
+            </div>
+        </div>
+    </div>
+      <script src="javascript.js"></script>
 </body>
 </html>
