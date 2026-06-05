@@ -1,9 +1,10 @@
- let coins = 0;
+let coins = 0;
 let currentSkin = "🍬";
 let gameMode = "bot";
-
+let coins_count = document.getElementById("coins-count")
  
-document.getElementById("coins-count").textContent = coins;
+ 
+coins_count.textContent = coins
 
 let secretCandy1 = null;
 let secretCandy2 = null;
@@ -26,18 +27,18 @@ function updateBoard() {
         candy.dataset.id = i;
         
         candy.addEventListener("click", function() {
-            let clickedId = parseInt(candy.dataset.id);
+            let clickedId = i
             
            
             if (gameMode == "friend") {
                 if (secretCandy1 == null) {
                     secretCandy1 = clickedId;
-                    alert("Player 1 hidden! Now Player 2, choose your candy.");
+                    alert("Player 1 hidden, now Player 2, choose your candy.");
                     return;
                 }
                 if (secretCandy2 == null) {
                     secretCandy2 = clickedId;
-                    alert("Player 2 hidden! Both candies are ready. Start the game!");
+                    alert("Player 2 hidden, both candies are ready. Start the game");
                     return;
                 }
             }
@@ -45,11 +46,11 @@ function updateBoard() {
             if (clickedId == secretCandy1 || clickedId == secretCandy2) {
                  document.getElementById("game-over-screen").style.display = "flex";
             } else {
-                alert("You got lucky!");
+               
                 candy.style.visibility = "hidden";
          
                 coins = coins + 1;
-                document.getElementById("coins-count").textContent = coins;
+               coins_count.textContent = coins
             }
         });  
         
@@ -60,12 +61,21 @@ function updateBoard() {
 updateBoard();
  
 document.getElementById("restart-btn").addEventListener("click", function() {
-   location.reload();
+   document.getElementById("game-over-screen").style.display = "none";
+    
+    if (gameMode == "bot") {
+        secretCandy1 = Math.floor(Math.random() * 20);
+        secretCandy2 = Math.floor(Math.random() * 20);
+    } else {
+        secretCandy1 = null;
+        secretCandy2 = null;
+    }
+    
+    updateBoard();
 });
 
- 
 let shopBtn = document.getElementById("shop-btn");
-let shopModal = document.getElementById("shop-modal");
+let shopModal = document.getElementById("shop");
 let closeShop = document.querySelector(".close-shop");
 
 shopBtn.addEventListener("click", function() {
@@ -82,7 +92,7 @@ fruitBtn.addEventListener("click", function() {
    if (coins >= 15) {
       alert("Success!");
       coins = coins - 15;
-      document.getElementById("coins-count").textContent = coins;
+      coins_count.textContent = coins
       
       currentSkin = "🍓"; 
       updateBoard();       
@@ -98,7 +108,7 @@ crystalBtn.addEventListener("click", function() {
    if (coins >= 30) {
       alert("Success!");
       coins = coins - 30;
-      document.getElementById("coins-count").textContent = coins;
+      coins_count.textContent = coins
       
       currentSkin = "💎"; 
       updateBoard();       
@@ -124,7 +134,7 @@ modeBotBtn.addEventListener("click", function() {
     gameMode = "bot";
     secretCandy1 = Math.floor(Math.random() * 20);
     secretCandy2 = Math.floor(Math.random() * 20);
-    alert("Mode changed: Bot hidden 2 candies!");
+    alert("Bot hidden 2 candies!");
     updateBoard();
 });
 
@@ -132,6 +142,6 @@ modeFriendBtn.addEventListener("click", function() {
     gameMode = "friend";
     secretCandy1 = null;
     secretCandy2 = null;
-    alert("Mode changed: Play with Friend! Player 1, choose a secret candy.");
+    alert("Play with Friend, Player 1, choose a secret candy.");
     updateBoard();
 });
